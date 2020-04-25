@@ -1,7 +1,11 @@
 const mongoose  = require('mongoose');
 
+mongoose.set('useNewUrlParser', true);
+mongoose.set('useFindAndModify', true);
+mongoose.set('useCreateIndex', true);
+
 const UsuarioSchema = mongoose.Schema({
-    nombrer: {
+    nombre: {
         type: String,
         require: true,
         trim: true,
