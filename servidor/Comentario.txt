@@ -1,0 +1,2 @@
+denvt: nos permite crear variables de entornos
+moogose: ORM de la BD
