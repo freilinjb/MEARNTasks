@@ -18,8 +18,6 @@ exports.crearUsuario = async (req, res) => {
         //Revisar que el usuario registrado sea unico
         let usuario = await Usuario.findOne({ email });
 
-        console.log(usuario);
-
         if(usuario) {
             return res.json({msg: 'Usuario existe '});
             // return res.state(400).json({msg: 'El usuario ya existe'});
@@ -57,7 +55,7 @@ exports.crearUsuario = async (req, res) => {
         //firmar el JWT
         jwt.sign(payload, process.env.SECRETA, {
             //Configuracion, activo por una hora
-            expiresIn: 3600000
+            expiresIn: 3600 //1 hora
         },(error, token) => {
             //callback
             if(error) throw error;
