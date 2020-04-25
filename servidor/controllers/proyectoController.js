@@ -4,9 +4,9 @@ exports.crearProyecto = async (req, res) => {
 
     try {
         //Crear un nuevo proyecto
-        const proyecto = new Proyecto(req.body);
+        const proyecto = new Proyecto(req.body); 
         proyecto.save();
-        escape.json(proyecto);
+        res.json(proyecto);
 
     } catch (error) {
         console.log(error);
