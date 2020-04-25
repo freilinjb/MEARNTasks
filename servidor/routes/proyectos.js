@@ -4,8 +4,8 @@ const proyectoController = require('../controllers/proyectoController');
 
 //Crear un usuario
 //api/proyectos
-router.post('/', {
+router.post('/', 
     proyectoController.crearProyecto
-});
+);
 
 module.exports = router;
