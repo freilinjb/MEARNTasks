@@ -22,16 +22,22 @@ exports.autenticarUsuario = async (req, res) => {
         try {
             //Revisar que sea un usuario registrado
             let usuario = await Usuario.findOne({email});
+            console.log(usuario);
+            
             if(!usuario) {
                 return res.status(400).json({msg: 'El usuario no existe'});
             }
 
+            console.log(usuario);
+
             //Revisar el password 
-            
+            //Compara la compatresa con la cifrada
+            const passCorrecto = await bcrypt.compare(password, usuario.password);
+            if(!passCorrecto) {
+                return res.status(400).json({msg: 'Password Incorrecto'});
+            }
+
         } catch (error) {
             console.log(error);
-            
         }
-
-        
 }
