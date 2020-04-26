@@ -10,4 +10,9 @@ router.post('/',
     proyectoController.crearProyecto
 );
 
+router.get('/', 
+    auth,//Primero verifica el auth si se autentica pasa a la ejecucion
+    proyectoController.crearProyecto
+);
+
 module.exports = router;
