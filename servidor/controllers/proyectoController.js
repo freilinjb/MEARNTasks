@@ -4,10 +4,10 @@ exports.crearProyecto = async (req, res) => {
 
     try {
         //Crear un nuevo proyecto
-        const proyecto = new Proyecto(req.body); 
+        const proyecto = new Proyecto(req.body);
 
         //Guardar el creador via JWT
-        proyecto.creador =  req.usuario.id;
+        proyecto.creador = req.usuario.id;
 
         //guardamos el proyecto
         proyecto.save();

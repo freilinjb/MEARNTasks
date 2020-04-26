@@ -3,11 +3,11 @@ const mongoose = require('mongoose');
 const ProyectoSchema = mongoose.Schema({
     nombre: {
         type: String,
-        require: true,
+        required: true,
         trim: true
     },
     creador: {
-        type: mongoose.Schema.Types.ObjectId, //Referencia
+        type: mongoose.Schema.Types.ObjectId, 
         ref: 'Usuario'
     },
     creado: {

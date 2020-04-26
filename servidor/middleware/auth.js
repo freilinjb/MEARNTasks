@@ -18,11 +18,11 @@ module.exports = function(req, res, next) {
         const cifrado = jwt.verify(token, process.env.SECRETA);
         //en caso de que se verifique
         //se puede crear el request
-        req.usuario =  cifrado.usuario;
+        req.usuario = cifrado.usuario;
         //para que vaya al siguiente middleware
-        netxt();
+        next();//Tenia un error esta linea
     } catch (error) {
-        res.status(401).json({msg: 'Token no valido'});
+        res.status(401).json({msg: 'Token no válido'});
         //condifiones el token expiro o token invalido, etc
     }
 }
