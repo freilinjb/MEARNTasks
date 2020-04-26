@@ -48,7 +48,7 @@ exports.crearUsuario = async (req, res) => {
             //guarda como peylo el ID del usuario que se esta firmando
             usuario: {
                 //El id viene del suario que se almacena por mogoose
-                _id: usuario._id
+                id: usuario.id
             }
         };
 
