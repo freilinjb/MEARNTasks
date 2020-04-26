@@ -1,4 +1,4 @@
-const mongoose = requiere('mongoose');
+const mongoose = require('mongoose');
 
 const TareaSchema = mongoose.Schema({
     nombre: {
@@ -12,11 +12,11 @@ const TareaSchema = mongoose.Schema({
     },
     creado: {
         type: Date,
-        ref: Date.now()
+        default: Date.now()
     },
     proyecto: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: ''
+        ref: 'Proyecto'
     }
 });
 
