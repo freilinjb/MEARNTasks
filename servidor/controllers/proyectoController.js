@@ -25,3 +25,14 @@ exports.crearProyecto = async (req, res) => {
         res.status(500).send('Hubo un error');
     }
 }
+
+//Obtene todos los proyectos del usuario actual
+exports.obtenerProyectos = async (req, res) => {
+    try {
+        console.log(req.usuario);
+        
+    } catch (error) {
+        console.log(error);
+        res.status(500).send('Hubo un error en el servidor');
+    }
+}
