@@ -13,7 +13,7 @@ exports.crearProyecto = async (req, res) => {
         //Crear un nuevo proyecto
         const proyecto = new Proyecto(req.body);
 
-        //Guardar el creador via JWT
+        //Guardar el creador via JWT 
         proyecto.creador = req.usuario.id;
 
         //guardamos el proyecto
@@ -38,5 +38,34 @@ exports.obtenerProyectos = async (req, res) => {
     } catch (error) {
         console.log(error); 
         res.status(500).send('Hubo un error en el servidor');
+    }
+}
+
+//Actualizar un proyecto
+exports.actualizarProyecto = async(req, res) => {
+    // revisar si hay errores
+    const errores = validationResult(req);
+    if( !errores.isEmpty() ) {
+        return res.status(400).json({errores: errores.array() })
+    }
+
+    const { nombre } = req.body;
+    const nuevoProyecto = {};
+
+    if(nombre) {
+        nuevoProyecto.nombre = nombre;
+    } 
+    //La parte de actualizar es un poco mas complicada
+    try {
+        //Revisar el ID
+
+        //Verificar si el proyecto existe
+
+        //Verificar el creador del proyecto
+        
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).send('Error en el servidor');
     }
 }
