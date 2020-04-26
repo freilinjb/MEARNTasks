@@ -66,6 +66,15 @@ exports.actualizarProyecto = async(req, res) => {
             return res.status(404).json({msg: 'Proyecto no encontrado'});
         }
         //Verificar el creador del proyecto
+        //creadir esta en el modelo y en la BD
+        if(proyecto.creador.toString() !== req.usuario.id) {
+            return res.status(401).json({msg: 'No Autorizado'});
+        }
+
+        //Actualizar
+        proyecto = await Proyecto.findByIdAndUpdate({_id: req.params.id}, {$set: nuevoProyecto}, {new: true});
+
+        res.json({proyecto});
 
 
     } catch (error) {
