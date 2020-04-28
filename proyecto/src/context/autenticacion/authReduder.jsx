@@ -16,13 +16,15 @@ export default (state, action) => {
             return{
                 ...state,
                 autenticado: true,
-                mensaje:null//Mostrar mensaje de adventencia manejado con el state
+                mensaje:null,//Mostrar mensaje de adventencia manejado con el state
+                cargando: false
             }
         case OBTENER_USUARIO:
             return {
                 ...state,
                 autenticado: true,
-                usuario: action.payload//Se va a llenar cuando se inicia sesion en el state Context, ext component
+                usuario: action.payload,//Se va a llenar cuando se inicia sesion en el state Context, ext component
+                cargando: false 
             }
             //No hay state porque solo habra alerta en el Context
         case CESSAR_SESION:
@@ -34,7 +36,8 @@ export default (state, action) => {
                 token: null,
                 usuario: null,//Cuando se cierre sesion el usuario tiene que volver a null
                 autenticado: null,
-                mensaje: action.payload//se maneta con el authState
+                mensaje: action.payload,//se maneta con el authState
+                cargando: false
             }
         default:
             return state;
