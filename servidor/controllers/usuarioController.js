@@ -9,7 +9,7 @@ exports.crearUsuario = async (req, res) => {
     //Revisar si hay errores
     const errores = validationResult(req);
     if(!errores.isEmpty()) {
-        return res.state(400).json({errores: errores.array()});
+        return res.status(400).json({errores: errores.array()});
     }
 
     const {email, password } = req.body;
@@ -19,7 +19,7 @@ exports.crearUsuario = async (req, res) => {
         let usuario = await Usuario.findOne({ email });
 
         if(usuario) {
-            return res.state(400).json({msg: 'Usuario existe '});
+            return res.status(400).json({msg: 'Usuario existe '});
             // return res.state(400).json({msg: 'El usuario ya existe'});
         }
         //crea el nuevo usuario

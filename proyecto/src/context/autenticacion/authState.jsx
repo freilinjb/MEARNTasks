@@ -30,7 +30,8 @@ const AuthState = props => {
             console.log(respuesta);
 
             dispatch({
-                type: REGISTRO_EXITOSO
+                type: REGISTRO_EXITOSO,
+                payload: respuesta.data 
             });
             
         } catch (error) { 
