@@ -53,8 +53,17 @@ const ProyectoState = props => {
                 //El payload siempre es lo que toma de parametro 
             });
         } catch (error) {
-            console.log(error);
-        }
+            // console.log(error);
+            const alerta = {
+                msg: 'Hubo un error',
+                categoria: 'alerta-error'
+            }
+
+            dispatch({
+                type: PROYECTO_ERROR,
+                payload: alerta
+            });
+            
     }
 
 
@@ -75,9 +84,17 @@ const ProyectoState = props => {
                 payload: resultado.data
             });
         } catch (error) {
-            console.log(error);
+            // console.log(error);
+            const alerta = {
+                msg: 'Hubo un error',
+                categoria: 'alerta-error'
+            }
+
+            dispatch({
+                type: PROYECTO_ERROR,
+                payload: alerta
+            });
             
-        }
      
     }
 
