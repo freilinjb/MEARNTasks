@@ -35,10 +35,16 @@ const AuthState = props => {
             });
             
         } catch (error) { 
-            console.log(error);
+            //Mostrando el error del backend el Ej: Usuario ya existe
+            // console.log(error.response.data.msg);
+            const alerta = {
+                msg: error.response.data.msg,
+                categoria: 'alerta-error'
+            }
 
             dispatch({
-                type: REGISTRO_ERROR
+                type: REGISTRO_ERROR,
+                payload: alerta
             })
         }
     }
