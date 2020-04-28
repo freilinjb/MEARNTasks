@@ -1,7 +1,7 @@
 import React, {useReducer} from 'react';
 import TareaContext from './tareaContext'
 import TareaReducer from './tareaReducer';
-import { v4 as uuidv4} from 'uuid';
+import clienteAxios from '../../config/axios';
 
 import {
     TAREAS_PROYECTO, 
@@ -16,21 +16,7 @@ import {
 
 const TareaState = props => {
     const initialState = {
-        tareas: [
-            {id: 1, nombre: 'Elegir Plamaforma', estado: true, proyectoId: 1},
-            {id: 2, nombre: 'Elegir Colores', estado: false, proyectoId: 2},
-            {id: 3, nombre: 'Elegir Plataformas de pago', estado: false, proyectoId: 3},
-            {id: 4, nombre: 'Elegir Hosting', estado: true, proyectoId: 4},
-            {id: 5, nombre: 'Elegir Plamaforma', estado: true, proyectoId: 3},
-            {id: 6, nombre: 'Elegir Colores', estado: false, proyectoId: 2},
-            {id: 7, nombre: 'Elegir Plataformas de pago', estado: false, proyectoId: 4},
-            {id: 8, nombre: 'Elegir Hosting', estado: true, proyectoId: 2},
-            {id: 9, nombre: 'Elegir Plamaforma', estado: true, proyectoId: 4},
-            {id: 10, nombre: 'Elegir Colores', estado: false, proyectoId: 2},
-            {id: 11, nombre: 'Elegir Plataformas de pago', estado: false, proyectoId: 1},
-            {id: 12, nombre: 'Elegir Hosting', estado: true, proyectoId: 3}
-        ],
-        tareasproyecto: null, //para cuando el usuario seleccione una tarea
+        tareasproyecto: [], //para cuando el usuario seleccione una tarea
         errortarea: false,
         tareaseleccionada: null
     }
@@ -49,12 +35,21 @@ const TareaState = props => {
     }
 
     //Agregar una tarea al proyecto seleccionado
-    const agrergarTarea = tarea => {
-        tarea.id = uuidv4();
-        dispatch({
-            type:AGERGAR_TAREAS,
-            payload: tarea
-        });
+    const agrergarTarea = async tarea => {
+        console.log(tarea);
+        
+        try {
+            const resultado = await clienteAxios.post('/api/tareas', tarea);
+            console.log(resultado);
+            
+            dispatch({
+                type:AGERGAR_TAREAS,
+                payload: tarea
+            });
+        } catch (error) {
+            console.log(error);
+            
+        }
     }
 
     //validar y mostrar un error en caso de que sea necesario
@@ -105,7 +100,6 @@ const TareaState = props => {
     return (
         <TareaContext.Provider
             value={{
-                tareas: state.tareas,
                 tareasproyecto: state.tareasproyecto,
                 errortarea: state.errortarea,
                 tareaseleccionada: state.tareaseleccionada,

@@ -57,8 +57,8 @@ const FormuTarea = () => {
         //Si es edicion o si es nueva tarea
         if(tareaseleccionada === null) {
             //agrergar la nueva tarea al state de las tareas
-            tarea.proyectoId = proyectoActual.id;
-            tarea.estado = false;
+            tarea.proyecto = proyectoActual._id;
+            //El estado lo define mongo por defecto
             agrergarTarea(tarea);
         } else {
             //actualizar tarea existente
