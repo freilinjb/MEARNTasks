@@ -55,14 +55,18 @@ const AuthState = props => {
 
     //Retorna el usuario autenticado
     const usuarioAutenticado = async () => {
-        const token = localStorage.getItem('toke n');
+        const token = localStorage.getItem('token');
         if(token) {
             //TODO: Funcion para enviar el token por headers
             tokenAuth(token);
         }
         try {
             const respuesta = await clienteAxios.get('/api/auth');
-            console.log(respuesta);
+            // console.log(respuesta.data);
+            dispatch({
+                type:OBTENER_USUARIO,
+                payload: respuesta.data
+            })
             
         } catch (error) {   
             console.log(error.response);

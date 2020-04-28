@@ -2,10 +2,14 @@ import clienteAxios from './axios';
 
 const tokenAuth = token => {
     if(token) {
+        //agrergado como default
         clienteAxios.defaults.headers.common['x-auth-token'] = token;
     } else {
+        //posiblemente cuando el usuario cierre sesion, no ba haver token
+        //o token ya expiro
+        //En caso de que no haya nada se elimina de nuestro header
         delete clienteAxios.defaults.headers.common['x-auth-token'];
     }
 }
 
-export default tokenAuth;
+export default tokenAuth; 
