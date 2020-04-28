@@ -15,13 +15,8 @@ import clienteAxios from '../../config/axios';
 
 //Para cambiar el state del form para habilitar el formulario
 const ProyectoState = props => {
-
-    const proyectos = [
-        {id: 1,nombre: 'Tienda Virtual'},
-        {id: 2,nombre: 'Intrannet'},
-        {id: 3,nombre: 'Diesno de Sitios Web'},
-        {id: 4,nombre: 'MEARN'}
-    ]    
+   
+    
 
     const initialState = {
         proyectos : [],
@@ -44,12 +39,20 @@ const ProyectoState = props => {
     }
 
     //TODO Obtener los proyectos
-    const obtenerProyectos = () => {
-        dispatch({
-            type: OBTENER_PROYECTOS,
-            payload: proyectos
-            //El payload siempre es lo que toma de parametro 
-        });
+    const obtenerProyectos = async () => {
+        try {
+
+            const resultado = await clienteAxios.get('/api/proyectos');
+
+
+            dispatch({
+                type: OBTENER_PROYECTOS,
+                payload: resultado.data.proyectos
+                //El payload siempre es lo que toma de parametro 
+            });
+        } catch (error) {
+            console.log(error);
+        }
     }
 
 
