@@ -64,7 +64,7 @@ exports.usuarioAutenticado = async (req, res) => {
 exports.usuarioAutenticado = async (req, res) => {
     
     try {
-        const usuario = await Usuario.findById(req.usuario.id);
+        const usuario = await Usuario.findById(req.usuario.id).select('-password');//le dice a mongo que el password no lo queremos
         res.json(usuario);
         
     } catch (error) {
