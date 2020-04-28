@@ -10,6 +10,9 @@ import { FORMULARIO_PROYECTO,
     PROYECTO_ACTUAL,
     ELIMINAR_PROYECTO } from '../../types';
 
+import clienteAxios from '../../config/axios';
+
+
 //Para cambiar el state del form para habilitar el formulario
 const ProyectoState = props => {
 
@@ -33,14 +36,14 @@ const ProyectoState = props => {
     //dispath va a ejecutar los diferentestes type para ejecutarlo en el proyectoReducer
     const [state, dispatch] = useReducer(proyectoReducer, initialState);
 
-    //Serie de funciones para el CRUD del proyecto
+    //TODO Serie de funciones para el CRUD del proyecto
     const mostrarFormulario = () => {
         dispatch({
             type: FORMULARIO_PROYECTO
         });
     }
 
-    //Obtener los proyectos
+    //TODO Obtener los proyectos
     const obtenerProyectos = () => {
         dispatch({
             type: OBTENER_PROYECTOS,
@@ -50,18 +53,30 @@ const ProyectoState = props => {
     }
 
 
-    //Agregar nuevo proyecto
-    const agrergarProyecto = proyecto => {
-        proyecto.id = uuidv4();
+    //TODO Agregar nuevo proyecto
+    const agrergarProyecto = async proyecto => {
+        //Esta parte no es necesaria porque el id se genera por mongo
+        // proyecto.id = uuidv4(); 
 
         //Insertar el proyecto en el state
-        dispatch({
-            type: AGRERGAR_PROYECTO,
-            payload: proyecto
-        });
+        try {
+
+            const resultado = await clienteAxios.post('/api/proyectos', proyecto);
+            console.log(resultado);
+            
+
+            dispatch({
+                type: AGRERGAR_PROYECTO,
+                payload: resultado.data
+            });
+        } catch (error) {
+            console.log(error);
+            
+        }
+     
     }
 
-    //Validar el formulario por errores
+    //TODO Validar el formulario por errores
     const mostrarError = () => {
         dispatch({
             type: VALIDAR_FORMULARIO
