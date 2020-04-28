@@ -51,7 +51,7 @@ export default (state, action) => {
             return {
                 ...state,
                 //traer los que no sean iguales al que le estas dando click
-                proyectos: state.proyectos.filter(proyecto => proyecto.id !== action.payload),
+                proyectos: state.proyectos.filter(proyecto => proyecto._id !== action.payload),
                 //resetea el listado de Taraae
                 proyecto:null
             }
