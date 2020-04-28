@@ -21,15 +21,19 @@ export default (state, action) => {
         case OBTENER_USUARIO:
             return {
                 ...state,
+                autenticado: true,
                 usuario: action.payload//Se va a llenar cuando se inicia sesion en el state Context, ext component
             }
             //No hay state porque solo habra alerta en el Context
-        case  LOGIN_ERROR://Realizan la mismo operacion, en caso de que haya un error reiniciar el token
+        case CESSAR_SESION:
+        case LOGIN_ERROR://Realizan la mismo operacion, en caso de que haya un error reiniciar el token
         case REGISTRO_ERROR:
             localStorage.removeItem('token');
             return{
                 ...state,
                 token: null,
+                usuario: null,//Cuando se cierre sesion el usuario tiene que volver a null
+                autenticado: null,
                 mensaje: action.payload//se maneta con el authState
             }
         default:

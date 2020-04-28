@@ -5,7 +5,7 @@ const Barra = () => {
     //Extraer la informacion de autenticacion
     const authContext = useContext(AuthContext);
     //Carga la informacion del usuario autenticado
-    const {usuario ,usuarioAutenticado } = authContext
+    const {usuario ,usuarioAutenticado, cerrarSesion } = authContext
 
     useEffect(() => {
         usuarioAutenticado();
@@ -16,7 +16,7 @@ const Barra = () => {
             { usuario ? <p className="nombre-usuario">Hola <span>{usuario.nombre}</span></p> : null}
             
             <nav className="nav-principal">
-                <a href="#!">Cerrar Sesion</a>
+                <button className="btn btn-blank text-white cerrar-sesion" onClick={() => cerrarSesion()}>Cerrar Sesión</button>
             </nav>
         </header>
      );
