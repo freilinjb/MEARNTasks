@@ -63,7 +63,7 @@ const ProyectoState = props => {
                 type: PROYECTO_ERROR,
                 payload: alerta
             });
-            
+        }
     }
 
 
@@ -93,9 +93,8 @@ const ProyectoState = props => {
             dispatch({
                 type: PROYECTO_ERROR,
                 payload: alerta
-            });
-            
-     
+            });   
+        }
     }
 
     //TODO Validar el formulario por errores
