@@ -15,9 +15,10 @@ const Login = (props) => {
 
     //Copiado de NuevaCuenta: En caso de que password o usuario no exista
     useEffect(() => {
-        // if(autenticado){ 
-        //     props.history.push('/proyectos');
-        // } 
+        if(autenticado){ 
+            props.history.push('/proyectos');
+        } 
+        
         if(mensaje) {
             mostrarAlerta(mensaje.msg, mensaje.categoria);
         }
