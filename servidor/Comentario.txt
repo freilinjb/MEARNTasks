@@ -2,4 +2,5 @@ denvt: nos permite crear variables de entornos
 moogose: ORM de la BD
 
 
-VIDEO 4
+SE OBTIENE UN ERROR LLAMADO CAMBIO DE RECURSO DE DOMINIO
+EN EL VIDEO 26 - 3 LEYENDO DATOS DEL FORMULARIO 
