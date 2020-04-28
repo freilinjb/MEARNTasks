@@ -3,6 +3,7 @@ import AuthContext from './authContext'
 import AuthRecuder from './authRecuder'
 
 import clienteAxios from '../../config/axios';
+import tokenAuth from '../../config/token'
 
 import {
     REGISTRO_EXITOSO, 
@@ -54,16 +55,18 @@ const AuthState = props => {
 
     //Retorna el usuario autenticado
     const usuarioAutenticado = async () => {
-        const token = localStorage.getItem('token');
+        const token = localStorage.getItem('toke n');
         if(token) {
             //TODO: Funcion para enviar el token por headers
-
+            tokenAuth(token);
         }
         try {
             const respuesta = await clienteAxios.get('/api/auth');
             console.log(respuesta);
             
         } catch (error) {   
+            console.log(error.response);
+            
             dispatch({
                 type:LOGIN_ERROR
             });
@@ -75,6 +78,14 @@ const AuthState = props => {
         try {
             const respuesta = await clienteAxios.post('/api/auth', datos);
             console.log(respuesta);
+            dispatch({
+                type:   LOGIN_EXITOSO,
+                payload: respuesta.data//Enviamos cuando el usuario se registra enviamos 
+                //El token en usuarioController
+            });
+
+            //obtener el usuario autenticado
+            usuarioAutenticado();
             
         } catch (error) {
             console.log(error.response.data.msg);

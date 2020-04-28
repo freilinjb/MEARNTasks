@@ -1,10 +1,10 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import AlertaContext from '../../context/alertas/alertaContext';
 import AuthContext from '../../context/autenticacion/authContext';
 
 
-const Login = () => {
+const Login = (props) => {
     //extraer los valores del context
     const alertaContext = useContext(AlertaContext);
     const { alerta, mostrarAlerta } = alertaContext;
@@ -12,6 +12,17 @@ const Login = () => {
     const authContext = useContext(AuthContext);
     const { mensaje, autenticado, iniciarSesion } = authContext;
     
+
+    //Copiado de NuevaCuenta: En caso de que password o usuario no exista
+    useEffect(() => {
+        // if(autenticado){ 
+        //     props.history.push('/proyectos');
+        // } 
+        if(mensaje) {
+            mostrarAlerta(mensaje.msg, mensaje.categoria);
+        }
+
+    },[mensaje, autenticado, props.hostory]);
 
     //State para iniciar sesion
     const [usuario, setUsuario] = useState({

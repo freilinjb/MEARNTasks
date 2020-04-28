@@ -10,6 +10,7 @@ import {
 
 export default (state, action) => {
     switch(action.type) {
+        case LOGIN_EXITOSO: //Es lo mismo 
         case REGISTRO_EXITOSO://Se guarda token en el LocalStorage
             localStorage.setItem('token', action.payload.token);
             return{
