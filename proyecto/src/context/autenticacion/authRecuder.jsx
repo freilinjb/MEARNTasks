@@ -19,7 +19,9 @@ export default (state, action) => {
             }
 
             //No hay state porque solo habra alerta en el Context
-        case REGISTRO_ERROR: 
+        case  LOGIN_ERROR://Realizan la mismo operacion, en caso de que haya un error reiniciar el token
+        case REGISTRO_ERROR:
+            localStorage.removeItem('token');
             return{
                 ...state,
                 token: null,
