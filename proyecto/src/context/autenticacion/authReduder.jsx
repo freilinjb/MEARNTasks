@@ -18,7 +18,11 @@ export default (state, action) => {
                 autenticado: true,
                 mensaje:null//Mostrar mensaje de adventencia manejado con el state
             }
-
+        case OBTENER_USUARIO:
+            return {
+                ...state,
+                usuario: action.payload//Se va a llenar cuando se inicia sesion en el state Context, ext component
+            }
             //No hay state porque solo habra alerta en el Context
         case  LOGIN_ERROR://Realizan la mismo operacion, en caso de que haya un error reiniciar el token
         case REGISTRO_ERROR:

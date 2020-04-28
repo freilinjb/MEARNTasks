@@ -1,6 +1,6 @@
 import React,{useReducer} from 'react';
 import AuthContext from './authContext'
-import AuthRecuder from './authRecuder'
+import AuthReduder from './authReduder'
 
 import clienteAxios from '../../config/axios';
 import tokenAuth from '../../config/token'
@@ -23,7 +23,7 @@ const AuthState = props => {
         mensaje: null
     }
 
-    const [state, dispatch] = useReducer(AuthRecuder,initialState);
+    const [state, dispatch] = useReducer(AuthReduder,initialState);
 
     const registrarUsuario = async datos => {
         try {
