@@ -4,6 +4,7 @@ import {
     FORMULARIO_PROYECTO, 
     OBTENER_PROYECTOS, 
     AGRERGAR_PROYECTO,
+    PROYECTO_ERROR,
     VALIDAR_FORMULARIO,
     PROYECTO_ACTUAL,
     ELIMINAR_PROYECTO } from '../../types';
@@ -54,6 +55,11 @@ export default (state, action) => {
                 proyectos: state.proyectos.filter(proyecto => proyecto._id !== action.payload),
                 //resetea el listado de Taraae
                 proyecto:null
+            }
+        case PROYECTO_ERROR:
+            return{
+                ...state,
+                mensaje: action.payload
             }
         default:
             return state;
