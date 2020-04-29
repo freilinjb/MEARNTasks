@@ -39,7 +39,6 @@ export default(state, action) => {
             }
         //Son iguales las condiciones tanto en actualizar como en el estado
         case ACTUALIZAR_TAREA:
-        case ESTADO_TAREA :
             return{
                 ...state,
                 tareasproyecto: state.tareasproyecto.map(tarea => tarea._id === action.payload._id ? action.payload : tarea )

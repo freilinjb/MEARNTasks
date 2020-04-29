@@ -26,8 +26,6 @@ const ListadoTareas = () => {
     const onClickEliminar = () => {
         eliminarProyecto(proyectoActual._id);   
     }
-
-    console.log(tareasproyecto);
     
     return (
         <Fragment>

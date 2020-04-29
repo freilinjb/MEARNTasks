@@ -95,13 +95,13 @@ exports.actualizarTarea = async (req, res) => {
         //Crear un objeto con la nueva informacion
         const nuevaTarea = {};
 
-        if(nombre) nuevaTarea.nombre = nombre;
-        if(estado) nuevaTarea.estado = estado;
+        nuevaTarea.nombre = nombre;
+        nuevaTarea.estado = estado;
 
         //Guardar la tarea
         tarea = await Tarea.findOneAndUpdate({_id: req.params.id}, nuevaTarea,{new: true});
 
-        res.json({tarea});
+        res.json({tarea}); 
 
     } catch (error) {
         console.log(error);

@@ -47,7 +47,6 @@ const TareaState = props => {
         
         try {
             const resultado = await clienteAxios.post('/api/tareas/', tarea);
-            console.log(resultado);
             
             dispatch({
                 type:AGERGAR_TAREAS,
@@ -67,6 +66,7 @@ const TareaState = props => {
     }
 
     const eliminarTarea = async (id, proyecto) => {
+        
         try {
             await clienteAxios.delete(`/api/tareas/${id}`, { params: { proyecto }});
             dispatch({
@@ -79,13 +79,22 @@ const TareaState = props => {
     }
 
     //Editar o modifica una tarea
-    const actualizarTarea = tarea => {
-        console.log(tarea);
+    const actualizarTarea = async tarea => {
         
-        dispatch({
-            type: ACTUALIZAR_TAREA,
-            payload: tarea
-        });
+        try {
+            const resultado = await clienteAxios.put(`/api/tareas/${tarea._id}`, tarea);
+            console.log(resultado.data.tarea);
+            
+            dispatch({
+                type: ACTUALIZAR_TAREA,
+                payload: resultado.data.tarea
+            });
+        } catch (error) {
+            console.log(error);
+            
+        }
+        
+
     }
 
     //Extrae una tarea para edicion
