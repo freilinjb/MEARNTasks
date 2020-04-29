@@ -16,13 +16,13 @@ export default(state, action) => {
         case TAREAS_PROYECTO:
             return {
                 ...state,
-                tareasproyecto: state.tareasproyecto.filter(tarea => tarea.proyectoId === action.payload)
+                tareasproyecto: action.payload //Ya que los datos vienen filtrados solo se necesita pasarlos
                 //itere en cada tarea y cuando la tarea es igual al proyecto se agrergan al DOM y al state
             }
         case AGERGAR_TAREAS:
             return{
                 ...state,
-                tareasproyecto:[...state.tareasproyecto, action.payload], 
+                tareasproyecto:[action.payload,...state.tareasproyecto], 
                 errortarea: false // reseteamos el error tarea al registrar la tarea
                 
                 //agrerga la tarea al conjunto 
@@ -35,14 +35,14 @@ export default(state, action) => {
         case ELIMINAR_TAREA:
             return{
                 ...state,
-                tareasproyecto: state.tareasproyecto.filter(tarea => tarea.id !== action.payload)
+                tareasproyecto: state.tareasproyecto.filter(tarea => tarea._id !== action.payload)
             }
         //Son iguales las condiciones tanto en actualizar como en el estado
         case ACTUALIZAR_TAREA:
         case ESTADO_TAREA :
             return{
                 ...state,
-                tareasproyecto: state.tareasproyecto.map(tarea => tarea.id === action.payload.id ? action.payload : tarea)
+                tareasproyecto: state.tareasproyecto.map(tarea => tarea._id === action.payload._id ? action.payload : tarea )
             }
         case TAREA_ACTUAL :
             return{

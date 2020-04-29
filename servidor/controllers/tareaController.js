@@ -46,10 +46,8 @@ exports.obtenerTareas = async (req, res) => {
     
     try {
         //Extraer el proyecto y comprobar si existe
-        const { proyecto } = req.body
-
-        console.log(req.body);
-        
+        const { proyecto } = req.query;
+         
 
         const existeProyecto = await Proyecto.findById(proyecto);   
         if(!existeProyecto) {

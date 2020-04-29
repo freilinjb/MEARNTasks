@@ -32,9 +32,12 @@ const TareaState = props => {
         console.log(proyecto);
         
         try {                                           //De esta forma la llave y el valor seran iguales
-            const resultado = await clienteAxios.get('api/tareas',{ paramns : {proyecto}})
+            const resultado = await clienteAxios.get('/api/tareas',{ params : {proyecto}});
+            console.log(resultado);
+            
             dispatch({
-                type: TAREAS_PROYECTO
+                type: TAREAS_PROYECTO,
+                payload: resultado.data.tareas
             });
         } catch (error) {
             console.log(error);
@@ -51,8 +54,7 @@ const TareaState = props => {
             console.log(resultado);
             
             dispatch({
-                type:AGERGAR_TAREAS,
-                payload: tarea
+                type:AGERGAR_TAREAS
             });
         } catch (error) {
             console.log(error);
