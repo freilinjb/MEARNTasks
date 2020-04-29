@@ -29,7 +29,6 @@ const TareaState = props => {
     // Obtener las tareas de un proyecto
     const obtenerTareas = async proyecto => {
 
-        console.log(proyecto);
         //Cuando se seleccione un proyecto se ejecuta esto
         try {
             const resultado = await clienteAxios.get('/api/tareas', { params: { proyecto }});
@@ -45,7 +44,6 @@ const TareaState = props => {
 
     //Agregar una tarea al proyecto seleccionado
     const agrergarTarea = async tarea => {
-        console.log(tarea);
         
         try {
             const resultado = await clienteAxios.post('/api/tareas/', tarea);
@@ -80,12 +78,14 @@ const TareaState = props => {
         }
     }
 
-    //Cambia el estado de cada tarea
-    const cambiarEstadoTarea = tarea => {
+    //Editar o modifica una tarea
+    const actualizarTarea = tarea => {
+        console.log(tarea);
+        
         dispatch({
-            type: ESTADO_TAREA,
+            type: ACTUALIZAR_TAREA,
             payload: tarea
-        }); 
+        });
     }
 
     //Extrae una tarea para edicion
@@ -96,13 +96,7 @@ const TareaState = props => {
         });
     }
 
-    //Editar o modifica una tarea
-    const actualizarTarea = tarea => {
-        dispatch({
-            type: ACTUALIZAR_TAREA,
-            payload: tarea
-        });
-    }
+
 
     //Elimina la tarea seleccionada
     const limpiarTarea=() => {
@@ -121,7 +115,6 @@ const TareaState = props => {
                 agrergarTarea,
                 validarTarea,
                 eliminarTarea,
-                cambiarEstadoTarea,
                 guardarTareaActual,
                 actualizarTarea,
                 limpiarTarea
