@@ -8,7 +8,6 @@ import {
     AGERGAR_TAREAS,
     VALIDAR_TAREA,
     ELIMINAR_TAREA,
-    ESTADO_TAREA,
     TAREA_ACTUAL,
     ACTUALIZAR_TAREA,
     LIMPIAR_TAREA
@@ -32,7 +31,6 @@ const TareaState = props => {
         //Cuando se seleccione un proyecto se ejecuta esto
         try {
             const resultado = await clienteAxios.get('/api/tareas', { params: { proyecto }});
-            console.log(resultado);
             dispatch({
                 type: TAREAS_PROYECTO,
                 payload: resultado.data.tareas
@@ -47,6 +45,7 @@ const TareaState = props => {
         
         try {
             const resultado = await clienteAxios.post('/api/tareas/', tarea);
+            console.log(resultado);
             
             dispatch({
                 type:AGERGAR_TAREAS,
