@@ -22,7 +22,7 @@ export default(state, action) => {
         case AGERGAR_TAREAS:
             return{
                 ...state,
-                tareasproyecto:[action.payload,...state.tareasproyecto], 
+                tareasproyecto:[...state.tareasproyecto, action.payload], 
                 errortarea: false // reseteamos el error tarea al registrar la tarea
                 
                 //agrerga la tarea al conjunto 
