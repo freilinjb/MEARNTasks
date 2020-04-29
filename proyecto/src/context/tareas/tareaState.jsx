@@ -26,22 +26,20 @@ const TareaState = props => {
 
     //Crear las funciones
 
-    //Obtener las tareas de un proyecto
+    // Obtener las tareas de un proyecto
     const obtenerTareas = async proyecto => {
-        //Cuando se seleccione un proyecto se ejecuta esto
+
         console.log(proyecto);
-        
-        try {                                           //De esta forma la llave y el valor seran iguales
-            const resultado = await clienteAxios.get('/api/tareas',{ params : {proyecto}});
+        //Cuando se seleccione un proyecto se ejecuta esto
+        try {
+            const resultado = await clienteAxios.get('/api/tareas', { params: { proyecto }});
             console.log(resultado);
-            
             dispatch({
                 type: TAREAS_PROYECTO,
                 payload: resultado.data.tareas
-            });
+            })
         } catch (error) {
             console.log(error);
-            
         }
     }
 
@@ -50,11 +48,12 @@ const TareaState = props => {
         console.log(tarea);
         
         try {
-            const resultado = await clienteAxios.post('/api/tareas', tarea);
+            const resultado = await clienteAxios.post('/api/tareas/', tarea);
             console.log(resultado);
             
             dispatch({
-                type:AGERGAR_TAREAS
+                type:AGERGAR_TAREAS,
+                payload: tarea
             });
         } catch (error) {
             console.log(error);
@@ -69,16 +68,15 @@ const TareaState = props => {
         });
     }
 
-    const eliminarTarea = async (id,proyecto) => {
+    const eliminarTarea = async (id, proyecto) => {
         try {
-            await clienteAxios.delete(`/api/tareas/${id}`,{params: {proyecto}});
+            await clienteAxios.delete(`/api/tareas/${id}`, { params: { proyecto }});
             dispatch({
                 type: ELIMINAR_TAREA,
                 payload: id
-            });            
+            })
         } catch (error) {
-            console.log(error);
-               
+            console.log(error)
         }
     }
 
