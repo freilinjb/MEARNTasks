@@ -43,9 +43,14 @@ exports.crearTarea = async (req, res) => {
 
 //Obteiene las tareas por proyecto
 exports.obtenerTareas = async (req, res) => {
+    
     try {
         //Extraer el proyecto y comprobar si existe
         const { proyecto } = req.body
+
+        console.log(req.body);
+        
+
         const existeProyecto = await Proyecto.findById(proyecto);   
         if(!existeProyecto) {
             return res.status(404).json({msg: 'Proyecto no encontrado'});
